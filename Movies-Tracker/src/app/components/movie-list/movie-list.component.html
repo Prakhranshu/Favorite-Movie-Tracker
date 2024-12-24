@@ -1,0 +1,37 @@
+<div class="movie-list-header">
+    <h2>Latest Movies</h2>
+    <button [matMenuTriggerFor]="FavoritesMenu">Favorites</button>
+    <mat-menu #FavoritesMenu="matMenu">
+        <div class="color-palate-cnt">
+            <div>
+            <app-favorites-list></app-favorites-list>
+        </div>
+        </div>
+    </mat-menu>
+</div>
+<div>
+    <div style="display: flex; flex-wrap: wrap;">
+        <div *ngFor="let movie of movies$ | async" class="movie-card">
+            <div class="movie-card-header">
+                <!-- Display Movie Poster -->
+                <img [src]="'https://image.tmdb.org/t/p/w300' + movie.poster_path" alt="{{ movie.title }}"
+                    class="movie-poster" />
+            </div>
+
+            <div class="movie-card-body">
+                <h3>{{ movie.title }} ({{ movie.genre }})</h3>
+                <p>Rating: {{ movie.rating }}</p>
+                <p>{{ movie.overview }}...</p> <!-- Show first 100 characters of description -->
+
+                <!-- Favorite Button -->
+                <button (click)="toggleFavorite(movie)">
+                    {{ movie.isFavorite ? 'Remove from Favorites' : 'Add to Favorites' }}
+                </button>
+
+                <!-- Remove Movie Button -->
+                <button (click)="removeMovie(movie.id)">Remove Movie</button>
+            </div>
+        </div>
+    </div>
+</div>
+

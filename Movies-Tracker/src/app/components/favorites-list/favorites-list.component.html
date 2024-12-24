@@ -1,0 +1,15 @@
+<h2>Favorites List</h2>
+<div *ngIf="(favorites$ | async)?.length; else noFavorites">
+  <ul>
+    <li *ngFor="let movie of favorites$ | async">
+      <h3>{{ movie.title }}</h3>
+      <p>{{ movie.description }}</p>
+      <button (click)="removeFavorite(movie.id)">Remove</button>
+    </li>
+  </ul>
+  <button (click)="clearFavorites()">Clear All</button>
+</div>
+
+<ng-template #noFavorites>
+  <p>No favorite movies yet!</p>
+</ng-template>
