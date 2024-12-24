@@ -8,14 +8,14 @@ import { Observable } from 'rxjs';
 export class MovieService {
 
   private baseUrl = 'https://api.themoviedb.org/3';
-  private apiKey = 'd0931b1137cb48bf147048f719b33bde'; // Replace with your TMDB API key
+  private apiKey = 'Your_API_KEY_FROM_TMDB'; // Replace with your TMDB API key
 
   constructor(private http: HttpClient) { }
 
   getPopularMovies(): Observable<any> {
     const url = `${this.baseUrl}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`;
     return this.http.get(url, {
-      headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMDkzMWIxMTM3Y2I0OGJmMTQ3MDQ4ZjcxOWIzM2JkZSIsIm5iZiI6MTczNDg5NTMxNy43OTcsInN1YiI6IjY3Njg2NmQ1ZWMyNzE4MzI2MDVjY2NiNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8IgTO2rbFMx4d1WXAflgt01OzMJRstB_Y7l-_cxgLyw` },
+      headers: { Authorization: `Bearer YOUR-ACCESS_TOKEN_FROM_TMDB` },
     });
   }
 }
